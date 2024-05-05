@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    Region: {{ selected_region }}
+                </a>
+                <ul class="dropdown-menu">
+                    {% for code, name in regions %}
+                        <li>
+                            <a class="dropdown-item" href="{{ path('main', {region: code}) }}">{{ name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div>
+                <a href="#" data-action="user#block" class="btn btn-sm btn-outline-secondary">Block</a>
+                <a href="#" data-action="user#unblock" class="btn btn-sm btn-outline-secondary">Unblock</a>
+                <a href="#" data-action="user#delete" class="btn btn-sm btn-outline-secondary">Delete</a>
+            </div>
+
+            <div class="form-inline my-lg-2 my-lg-0">
+                Export
+            </div>
+
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-inline my-lg-2 my-lg-0">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Number</th>
+                </tr>
+                </thead>
+                <tbody>
+                <ul id="task-list">
+                    {% for row in fakerUsers %}
+                        <tr>
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.idUser }}</td>
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.address }}</td>
+                            <td>{{ row.number }}</td>
+
+                        </tr>
+                    {% endfor %}
+                </ul>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}
